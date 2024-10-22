@@ -1,0 +1,36 @@
+{% extends 'tarefas/base.html' %}
+
+{% block conteudo %}
+<div class="container">
+    <h2>Seja Bem-vindo!</h2>
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Função</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.nome }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.funcao }}</td>
+                <td>
+                    {% if usuario.id %} 
+                        <a href="{% url 'editar_usuario' usuario.id %}" class="btn btn-warning">Editar</a>
+                    {% else %}
+                        ID de usuário inválido
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'registrar_entrada' %}" class="btn btn-primary mb-3">Registrar Entrada</a>
+</div>
+{% endblock %}
